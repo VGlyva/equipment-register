@@ -1,13 +1,18 @@
 package test.review.equipmentregister.model;
 
+import jakarta.persistence.Column;
 import jakarta.persistence.Entity;
+import jakarta.persistence.Table;
 import test.review.equipmentregister.entity.Technique;
 
 import java.util.Objects;
 
 @Entity
+@Table(name = "vacuum_cleaner")
 public class VacuumCleaner extends Technique {
+    @Column
     private Double dustContainerVolume;
+    @Column
     private Integer numberOfModes;
 
     public VacuumCleaner() {
