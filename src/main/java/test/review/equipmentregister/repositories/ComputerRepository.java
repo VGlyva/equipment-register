@@ -6,5 +6,5 @@ import test.review.equipmentregister.model.Computer;
 import java.util.List;
 
 public interface ComputerRepository extends JpaRepository<Computer, Integer> {
-    List<Computer> findComputerByName(String name);
+
 }
