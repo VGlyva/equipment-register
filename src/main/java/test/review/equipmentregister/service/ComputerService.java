@@ -6,6 +6,8 @@ import org.springframework.stereotype.Service;
 import test.review.equipmentregister.model.Computer;
 import test.review.equipmentregister.repositories.ComputerRepository;
 
+import java.util.List;
+
 @Service
 public class ComputerService {
     @Autowired
@@ -17,6 +19,12 @@ public class ComputerService {
 
     public Computer createComputer(Computer computer) {
         return computerRepository.save(computer);
+    }
+    public List<Computer> getCategory(String category) {
+        return computerRepository.findComputerByCategoryIgnoreCase(category);
+    }
+    public List<Computer> getProcessorType(String processorType) {
+        return computerRepository.findComputerByProcessorTypeIgnoreCase(processorType);
     }
     public Computer editComputer(Computer computer) {
         return computerRepository.save(computer);

@@ -5,6 +5,7 @@ import org.springframework.stereotype.Service;
 import test.review.equipmentregister.entity.Technique;
 import test.review.equipmentregister.repositories.TechniqueRepository;
 
+import java.util.Comparator;
 import java.util.List;
 import java.util.stream.Collectors;
 
@@ -39,6 +40,22 @@ public class TechniqueService {
                 .filter(e -> e.getColor().equals(color))
                 .collect(Collectors.toList());
 
+    }
+
+    public List<Technique> findByPriceBetween(Integer min, Integer max) {
+        return techniqueRepository.findByPriceBetween(min, max);
+    }
+    public List<Technique> sortByAlphabet() {
+        return techniqueRepository.findAll()
+                .stream()
+                .sorted(Comparator.comparing(Technique::getName))
+                .collect(Collectors.toList());
+    }
+    public List<Technique> sortByPrice() {
+        return techniqueRepository.findAll()
+                .stream()
+                .sorted(Comparator.comparing(Technique::getPrice))
+                .collect(Collectors.toList());
     }
 
 }

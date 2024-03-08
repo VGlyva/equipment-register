@@ -7,6 +7,8 @@ import org.springframework.web.bind.annotation.*;
 import test.review.equipmentregister.model.Computer;
 import test.review.equipmentregister.service.ComputerService;
 
+import java.util.List;
+
 @RestController
 @RequestMapping("computers")
 public class ComputerController {
@@ -15,6 +17,14 @@ public class ComputerController {
 
     public ComputerController(ComputerService computerService) {
         this.computerService = computerService;
+    }
+    @GetMapping("/category/{category}")
+    public ResponseEntity<List<Computer>> getCategory(@PathVariable String category) {
+        return ResponseEntity.ok(computerService.getCategory(category));
+    }
+    @GetMapping("/processorType/{processorType}")
+    public ResponseEntity<List<Computer>> getProcessorType(@PathVariable String processorType) {
+        return ResponseEntity.ok(computerService.getProcessorType(processorType));
     }
 
     @PostMapping
