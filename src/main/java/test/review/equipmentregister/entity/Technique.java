@@ -1,19 +1,19 @@
 package test.review.equipmentregister.entity;
 
-import jakarta.persistence.Column;
-import jakarta.persistence.GeneratedValue;
-import jakarta.persistence.Id;
-import jakarta.persistence.MappedSuperclass;
+import jakarta.persistence.*;
 
 import java.util.Objects;
 
-@MappedSuperclass
+@Entity
+@Inheritance(strategy = InheritanceType.TABLE_PER_CLASS)
 public class Technique {
     @Id
     @GeneratedValue
     private Integer id;
     @Column
     private String name;
+    @Column
+    private String typeOfEquipment;
     @Column
     private String color;
     @Column
@@ -26,8 +26,10 @@ public class Technique {
     private String country;
     @Column
     private String brand;
+
     @Column
-    private boolean order;
+    private boolean orderOnline;
+
     @Column
     private boolean credit;
 
@@ -48,6 +50,14 @@ public class Technique {
 
     public void setName(String name) {
         this.name = name;
+    }
+
+    public String getTypeOfEquipment() {
+        return typeOfEquipment;
+    }
+
+    public void setTypeOfEquipment(String typeOfEquipment) {
+        this.typeOfEquipment = typeOfEquipment;
     }
 
     public String getColor() {
@@ -98,12 +108,12 @@ public class Technique {
         this.brand = brand;
     }
 
-    public boolean isOrder() {
-        return order;
+    public boolean isOrderOnline() {
+        return orderOnline;
     }
 
-    public void setOrder(boolean order) {
-        this.order = order;
+    public void setOrderOnline(boolean orderOnline) {
+        this.orderOnline = orderOnline;
     }
 
     public boolean isCredit() {
@@ -119,12 +129,12 @@ public class Technique {
         if (this == o) return true;
         if (o == null || getClass() != o.getClass()) return false;
         Technique technique = (Technique) o;
-        return availability == technique.availability && order == technique.order && credit == technique.credit && Objects.equals(id, technique.id) && Objects.equals(name, technique.name) && Objects.equals(color, technique.color) && Objects.equals(size, technique.size) && Objects.equals(price, technique.price) && Objects.equals(country, technique.country) && Objects.equals(brand, technique.brand);
+        return availability == technique.availability && orderOnline == technique.orderOnline && credit == technique.credit && Objects.equals(id, technique.id) && Objects.equals(name, technique.name) && Objects.equals(typeOfEquipment, technique.typeOfEquipment) && Objects.equals(color, technique.color) && Objects.equals(size, technique.size) && Objects.equals(price, technique.price) && Objects.equals(country, technique.country) && Objects.equals(brand, technique.brand);
     }
 
     @Override
     public int hashCode() {
-        return Objects.hash(id, name, color, size, price, availability, country, brand, order, credit);
+        return Objects.hash(id, name, typeOfEquipment, color, size, price, availability, country, brand, orderOnline, credit);
     }
 
     @Override
@@ -132,13 +142,14 @@ public class Technique {
         return "Technique{" +
                 "id=" + id +
                 ", name='" + name + '\'' +
+                ", typeOfEquipment='" + typeOfEquipment + '\'' +
                 ", color='" + color + '\'' +
                 ", size=" + size +
                 ", price=" + price +
                 ", availability=" + availability +
                 ", country='" + country + '\'' +
                 ", brand='" + brand + '\'' +
-                ", order=" + order +
+                ", orderOnline=" + orderOnline +
                 ", credit=" + credit +
                 '}';
     }

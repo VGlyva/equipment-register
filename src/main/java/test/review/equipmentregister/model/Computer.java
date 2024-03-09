@@ -2,10 +2,12 @@ package test.review.equipmentregister.model;
 
 import jakarta.persistence.Column;
 import jakarta.persistence.Entity;
+import jakarta.persistence.Table;
 import test.review.equipmentregister.entity.Technique;
 
 import java.util.Objects;
 @Entity
+@Table(name = "computer")
 public class Computer extends Technique {
     @Column
     private String category;

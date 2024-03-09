@@ -1,13 +1,18 @@
 package test.review.equipmentregister.model;
 
+import jakarta.persistence.Column;
 import jakarta.persistence.Entity;
+import jakarta.persistence.Table;
 import test.review.equipmentregister.entity.Technique;
 
 import java.util.Objects;
 
 @Entity
+@Table(name = "fridge")
 public class Fridge extends Technique {
+    @Column
     private Integer numberOfDoors;
+    @Column
     private String compressorType;
 
     public Fridge() {
